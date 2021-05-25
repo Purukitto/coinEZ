@@ -1,0 +1,27 @@
+{
+  "name": "coinez",
+  "version": "1.0.0",
+  "description": "Get bitcoin, ethereum, litecoin, eos, grin, cosmos and other cryptocurrency price, volume, market data, and over 4000 publicly traded cryptocurrencies from over 300 exchanges. Set personal price alerts, send and receive tips, news alerts etc.!",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Purukitto/coinEZ.git"
+  },
+  "keywords": [
+    "crypto",
+    "cryptocurrency"
+  ],
+  "author": "Pulkit Sambhavi Singh (@Purukitto)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Purukitto/coinEZ/issues"
+  },
+  "homepage": "https://github.com/Purukitto/coinEZ#readme"
+}
