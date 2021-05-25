@@ -4,7 +4,9 @@
   "description": "Get bitcoin, ethereum, litecoin, eos, grin, cosmos and other cryptocurrency price, volume, market data, and over 4000 publicly traded cryptocurrencies from over 300 exchanges. Set personal price alerts, send and receive tips, news alerts etc.!",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "cryptocurrencies": "^7.0.0",
+    "discord.js": "^12.5.3",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
   "scripts": {
