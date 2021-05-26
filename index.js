@@ -1,8 +1,7 @@
-// https://discord.com/api/oauth2/authorize?client_id=846743549219045376&permissions=537193536&scope=bot
-
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const prefix = process.env.prefix;
+const token = process.env.token;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
