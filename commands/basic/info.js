@@ -2,7 +2,6 @@ const fetch = require('node-fetch');
 const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
 
-
 module.exports = {
     name: 'info',
     description: 'Check the current price, market cap, etc. of any cryptocurrencies that you need!',
