@@ -1,80 +1,149 @@
 const fetch = require('node-fetch');
 const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
+const { CanvasRenderService } = require('chartjs-node-canvas');
 const Canvas = require('canvas');
-var Chart = require('chart.js');
+const width = 600;
+const height = 400;
 
 module.exports = {
     name: 'chart',
     description: 'View the price chart any cryptocurrencies that you need!',
     aliases: ['cx'],
     args: true,
-    usage: '[Symbol] <Time>',
+    usage: '[Symbol] <Currency>',
     async execute(message, args) {
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName].toLowerCase().replace(/\s/g, '-');
         if (symbol == 'binance-coin') symbol = 'binancecoin';
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
+        currency = "USD";
+        if (args.length > 1) currency = args[1].toUpperCase();
+
+        reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}/market_chart?vs_currency=${currency}&days=1`;
 
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        if (results.market_data.price_change_24h >= 0) eColor = '#77dd77'
-        else eColor = '#ff6961'
-
-        if (symbol == 'binancecoin') symbol = 'binance-coin';
-
-        const canvas = Canvas.createCanvas(700, 250);
-        const ctx = canvas.getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
         if (results) {
-            const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-            channel.send(`Welcome to the server, ${member}!`, attachment);
-            // const priceEmbed = new Discord.MessageEmbed()
-            //     .setColor(eColor)
-            //     .setTitle(results.name + ' (' + symbolName + ')')
-            //     .setURL(`https://www.coingecko.com/en/coins/${symbol}`)
-            //     // .setAuthor(symbolName + '/' + currency, results[0].image)
-            //     .addField('Current Price', `\`\`\`USD   : $${results.market_data.current_price.usd}\nEUR   : €${results.market_data.current_price.eur}\nINR   : ₹${results.market_data.current_price.inr}\nBTC   : Ƀ${results.market_data.current_price.btc}\nETH   : Ξ${results.market_data.current_price.eth}\n\`\`\``)
-            //     .addField('Market', `\`\`\`Market Cap      : $${results.market_data.market_cap.usd}\nMarket Cap Rank : $${results.market_data.market_cap_rank}\nVolume          : $${results.market_data.total_volume.usd}\`\`\``)
-            //     .addField('Price Change(%)', `\`\`\`24 Hours : ${results.market_data.price_change_percentage_24h.toFixed(2)}%\n7 Days   : ${results.market_data.price_change_percentage_7d.toFixed(2)}%\n30 Days  : ${results.market_data.price_change_percentage_30d.toFixed(2)}%\n1 year   : ${results.market_data.price_change_percentage_1y.toFixed(2)}%\n\`\`\``)
-            //     .setThumbnail(results.image.small)
 
-            // message.channel.send(priceEmbed);
+            glabels = []
+            gprices = []
+            gprices2 = []
+            gvolume = []
+            gmax = 0;
+            gmin = Number.MAX_VALUE;
+
+            for (x in results.prices) {
+                glabels.push(results.prices[x][0]);
+                tprice = results.prices[x][1];
+                gprices.push(tprice);
+                if (tprice > gmax) gmax = tprice;
+                else if (tprice < gmin) gmin = tprice;
+                // gprices2.push(results.market_caps[x][1]);
+                // gvolume.push(results.total_volumes[x][1])
+            }
+
+            for (x in glabels) {
+                unixTime = glabels[x];
+                var date = new Date(unixTime * 1000);
+                var hours = date.getHours();
+                var minutes = "0" + date.getMinutes();
+                glabels[x] = hours + ':' + minutes.substr(-2);
+            }
+
+
+            const data = {
+                labels: glabels,
+                datasets: [{
+                        label: 'Price',
+                        data: gprices,
+                        borderColor: '#77dd77',
+                        borderWidth: 1.5,
+                        pointRadius: 0,
+                        // borderDash: [5, 3],
+                        showLine: true,
+                        steppedLine: true
+                    },
+                    // {
+                    //     label: 'Market Cap',
+                    //     data: gprices2,
+                    //     borderColor: '#bbeeee',
+                    //     pointBackgroundColor: '#bbeeee',
+                    //     pointBorderColor: '#bbeeee',
+                    //     borderDash: [5, 3]
+                    // },
+                    // {
+                    //     label: 'Volume',
+                    //     data: gvolume,
+                    //     borderColor: '#faffff',
+                    //     pointBackgroundColor: '#faffff',
+                    //     pointBorderColor: '#faffff'
+                    // }
+                ]
+
+            };
+            const chartCallback = (ChartJS) => {
+                ChartJS.register({
+                    id: 'background_color',
+                    beforeDraw: (chart) => {
+                        const ctx = chart.canvas.getContext('2d');
+                        ctx.save();
+                        ctx.globalCompositeOperation = 'destination-over';
+                        ctx.fillStyle = '#161a25';
+                        ctx.fillRect(0, 0, chart.width, chart.height);
+                        ctx.restore();
+                    },
+                })
+            }
+            const canvas = new CanvasRenderService(width, height, chartCallback);
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '         ' + symbolName + ' / ' + currency.toUpperCase() + ' (' + gprices[24] + ')',
+                            align: 'start',
+                            color: '#faffff'
+                        }
+                    }
+                },
+            };
+
+            const gImageSRC = await canvas.renderToDataURL(config);
+            const gImage = await Canvas.loadImage(gImageSRC);
+
+            const fCanvas = Canvas.createCanvas(width, height);
+            const fContext = fCanvas.getContext('2d');
+            fContext.drawImage(gImage, 0, 0, fCanvas.width, fCanvas.height);
+
+            fContext.fillStyle = "#161a25";
+            fContext.fillRect(0, 0, width, 60);
+
+            const zimg = await Canvas.loadImage('https://i.ibb.co/3F1MT0N/logog-03.png');
+            fContext.drawImage(zimg, 50, 315, 115.49, 31.5);
+
+            fContext.font = 'bold 15px arial';
+
+            if ((results.prices[results.prices.length - 1][1]) - (results.prices[results.prices.length - 2][1]) > 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
+            fContext.fillStyle = gbcolor;
+            fContext.fillText(`${symbolName}/${currency} | 1 Day`, 10, 20);
+
+            gprice = results.prices[results.prices.length - 1][1]
+
+            fContext.font = 'bold 12px arial';
+            fContext.fillText(`Price: ${gprice.toFixed(4)}     High: ${gmax.toFixed(4)}     Low: ${gmin.toFixed(4)}`, 10, 40);
+
+            const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), 'welcome-image.png');
+
+            message.channel.send(attachment)
         }
     },
 };
