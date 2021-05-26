@@ -1,41 +1,60 @@
 const fetch = require('node-fetch');
 const cryptocurrencies = require('cryptocurrencies');
+const Discord = require('discord.js');
+
 
 module.exports = {
     name: 'price',
-    description: 'Check the current price of any cryptocurrencies in any other supported currencies that you need!',
-    cooldown: 5,
+    description: 'Check the current price of any cryptocurrencies any any other supported currencies that you need!',
     aliases: ['p'],
-    usage: '[Symbol] <Currency> <Time>',
+    args: true,
+    usage: '[Symbol] <Currency>',
     async execute(message, args) {
         if (args.length == 1) {
-            symbolName = args[0];
             currency = "USD";
-            time = "24h";
-        }
-        if (args.length == 2) {
-            symbolName = args[0];
-            currency = args[1];
-            time = "24h";
+            symbolName = args[0].toUpperCase();
+            symbol = cryptocurrencies[symbolName].toLowerCase();
+
+            reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
+
+
+            const results = await fetch(reqURL)
+                .then(response => response.json());
+
+            if (!results.length < 1) {
+                const priceEmbed = new Discord.MessageEmbed()
+                    .setColor('#ff6666')
+                    .setTitle(results[0].current_price + '(' + results[0].price_change_24h.toFixed(2) + '%)')
+                    // .setURL()
+                    .setAuthor(symbolName + '/' + currency, results[0].image)
+                    .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low : ${results[0].low_24h}\`\`\``)
+                    // .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+
+                message.channel.send(priceEmbed);
+            }
         } else {
-            symbolName = args[0];
-            currency = args[1];
-            time = args[2];
+            currency = args[1].toUpperCase();
+            symbolName = args[0].toUpperCase();
+
+            symbol = cryptocurrencies[symbolName].toLowerCase();
+
+            reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
+
+
+            const results = await fetch(reqURL)
+                .then(response => response.json());
+
+            if (!results.length < 1) {
+                const priceEmbed = new Discord.MessageEmbed()
+                    .setColor('#ff6666')
+                    .setTitle(results[0].current_price + '(' + results[0].price_change_24h.toFixed(2) + '%)')
+                    // .setURL()
+                    .setAuthor(symbolName + '/' + currency, results[0].image)
+                    .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low: ${results[0].low_24h}\`\`\``)
+                    // .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+
+                message.channel.send(priceEmbed);
+            }
         }
-
-
-        symbol = cryptocurrencies.symbolName;
-
-        console.log(symbolName, symbol, currency, time)
-            // reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}"&order=market_cap_desc&per_page=1&page=1&sparkline=false&price_change_percentage=${time}`;
-
-        // const { list } = await fetch(reqURL)
-        //     .then(response => response.json());
-
-        // if (list) {
-
-        //     message.channel.send(list[0].current_price);
-        // }
-
     },
 };
