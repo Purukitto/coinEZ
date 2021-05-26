@@ -132,7 +132,7 @@ module.exports = {
 
             fContext.font = 'bold 15px arial';
 
-            if ((results.prices[results.prices.length - 1][1]) - (results.prices[results.prices.length - 2][1]) > 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
+            if ((results.prices[results.prices.length - 1][1]) - (results.prices[results.prices.length - 2][1]) >= 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
             fContext.fillStyle = gbcolor;
             fContext.fillText(`${symbolName}/${currency} | 1 Day`, 10, 20);
 
