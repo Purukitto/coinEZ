@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
-const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
-
+const cryptocurrencies = require('../../cryptocurrencies.json');
 
 module.exports = {
     name: 'price',
@@ -13,9 +12,7 @@ module.exports = {
         if (args.length == 1) {
             currency = "USD";
             symbolName = args[0].toUpperCase();
-            symbol = cryptocurrencies[symbolName].toLowerCase().replace(/\s/g, '-');
-
-            if (symbol == 'binance-coin') symbol = 'binancecoin';
+            symbol = cryptocurrencies[symbolName.toLowerCase()];
 
             reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
 
@@ -36,8 +33,7 @@ module.exports = {
         } else {
             currency = args[1].toUpperCase();
             symbolName = args[0].toUpperCase();
-
-            symbol = cryptocurrencies[symbolName].toLowerCase();
+            symbol = cryptocurrencies[symbolName.toLowerCase()];
 
             reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
 

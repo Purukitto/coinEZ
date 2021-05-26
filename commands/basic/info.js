@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
-const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
+const cryptocurrencies = require('../../cryptocurrencies.json');
+
 
 module.exports = {
     name: 'info',
@@ -10,8 +11,7 @@ module.exports = {
     usage: '[Symbol]',
     async execute(message, args) {
         symbolName = args[0].toUpperCase();
-        symbol = cryptocurrencies[symbolName].toLowerCase().replace(/\s/g, '-');
-        if (symbol == 'binance-coin') symbol = 'binancecoin';
+        symbol = cryptocurrencies[symbolName.toLowerCase()];
 
         reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
 
@@ -20,8 +20,6 @@ module.exports = {
 
         if (results.market_data.price_change_24h >= 0) eColor = '#77dd77'
         else eColor = '#ff6961'
-
-        if (symbol == 'binancecoin') symbol = 'binance-coin';
 
         if (results) {
             const priceEmbed = new Discord.MessageEmbed()

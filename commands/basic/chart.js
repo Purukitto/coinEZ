@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
-const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
+const cryptocurrencies = require('../../cryptocurrencies.json');
 const { CanvasRenderService } = require('chartjs-node-canvas');
 const Canvas = require('canvas');
 const width = 600;
@@ -14,8 +14,7 @@ module.exports = {
     usage: '[Symbol] <Currency>',
     async execute(message, args) {
         symbolName = args[0].toUpperCase();
-        symbol = cryptocurrencies[symbolName].toLowerCase().replace(/\s/g, '-');
-        if (symbol == 'binance-coin') symbol = 'binancecoin';
+        symbol = cryptocurrencies[symbolName.toLowerCase()];
 
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();

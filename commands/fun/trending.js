@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const cryptocurrencies = require('cryptocurrencies');
 const Discord = require('discord.js');
 
 
