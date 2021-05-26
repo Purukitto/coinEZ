@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'price',
-    description: 'Check the current price of any cryptocurrencies any any other supported currencies that you need!',
+    description: 'Check the current price of any cryptocurrencies against any other supported currencies that you need!',
     aliases: ['p'],
     args: true,
     usage: '[Symbol] <Currency>',
@@ -13,10 +13,11 @@ module.exports = {
         if (args.length == 1) {
             currency = "USD";
             symbolName = args[0].toUpperCase();
-            symbol = cryptocurrencies[symbolName].toLowerCase();
+            symbol = cryptocurrencies[symbolName].toLowerCase().replace(/\s/g, '-');
+
+            if (symbol == 'binance-coin') symbol = 'binancecoin';
 
             reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
-
 
             const results = await fetch(reqURL)
                 .then(response => response.json());
