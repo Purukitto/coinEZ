@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 
 
 module.exports = {
-    name: 'invite',
-    description: 'Invite the bot to your own server!',
-    aliases: ['inv'],
+    name: 'info',
+    description: 'Check bot information!',
+    aliases: ['bot'],
     async execute(message, args) {
         let bicon = bot.user.displayAvatarURL();
         let botembed = new Discord.MessageEmbed()
