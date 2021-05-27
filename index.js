@@ -17,7 +17,7 @@ for (const folder of commandFolders) {
 }
 
 client.once('ready', () => {
-    bot.user.setActivity('Crypto 🚀 🌕', {
+    client.user.setActivity('Crypto 🚀🌕', {
         type: 'WATCHING',
     });
     console.log('Ready!');
