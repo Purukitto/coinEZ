@@ -10,9 +10,9 @@ const height = 400;
 
 module.exports = {
     name: 'fng',
-    description: 'View the price chart of any cryptocurrencies that you need!',
+    description: 'Check the current fear and greed index or see the chart for the last month!',
     aliases: ['fear', 'gread'],
-    usage: ['<chart/c>'],
+    usage: ['<\'chart\'/\'c\'>'],
     async execute(message, args) {
 
         reqURL = `https://api.alternative.me/fng/?limit=30&date_format=world`;
