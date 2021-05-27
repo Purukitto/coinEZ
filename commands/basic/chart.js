@@ -29,8 +29,6 @@ module.exports = {
 
             glabels = []
             gprices = []
-            gprices2 = []
-            gvolume = []
             gmax = 0;
             gmin = Number.MAX_VALUE;
 
