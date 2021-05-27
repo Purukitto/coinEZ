@@ -25,8 +25,7 @@ module.exports = {
                 .setColor('#ff6666')
                 .setTitle(results[0].current_price + '(' + results[0].price_change_24h.toFixed(2) + '%)')
                 .setAuthor(symbolName + '/' + currency, results[0].image)
-                .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low : ${results[0].low_24h}\`\`\``)
-
+                .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low : ${results[0].low_24h}\`\`\``);
             message.channel.send(priceEmbed);
         }
     },

@@ -6,7 +6,7 @@ const cryptocurrencies = require('../../cryptocurrencies.json');
 module.exports = {
     name: 'info',
     description: 'Check the current price, market cap, etc. of any cryptocurrencies that you need!',
-    aliases: ['coin', 'info', 'i'],
+    aliases: ['coin', 'i'],
     args: true,
     usage: '[Symbol]',
     async execute(message, args) {
