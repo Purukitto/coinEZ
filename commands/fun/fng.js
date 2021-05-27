@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const cryptocurrencies = require('../../cryptocurrencies.json');
 const { CanvasRenderService } = require('chartjs-node-canvas');
 const Canvas = require('canvas');
 

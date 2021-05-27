@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 
-
 module.exports = {
     name: 'trending',
     description: 'Top-3 trending coins on CoinGecko as searched by users in the last 24 hours!',

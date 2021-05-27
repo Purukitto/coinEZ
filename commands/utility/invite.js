@@ -1,7 +1,3 @@
-const fetch = require('node-fetch');
-const Discord = require('discord.js');
-
-
 module.exports = {
     name: 'invite',
     description: 'Invite the bot to your own server!',
