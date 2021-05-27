@@ -10,7 +10,7 @@ const height = 400;
 
 module.exports = {
     name: 'chart',
-    description: 'View the price chart any cryptocurrencies that you need!',
+    description: 'View the price chart of any cryptocurrencies that you need!',
     aliases: ['cx', 'c'],
     args: true,
     usage: '[Symbol] <Currency>',
