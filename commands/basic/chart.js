@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const cryptocurrencies = require('../../cryptocurrencies.json');
 const { CanvasRenderService } = require('chartjs-node-canvas');
 const Canvas = require('canvas');
+
+// Globals
 const width = 600;
 const height = 400;
 
@@ -13,14 +15,13 @@ module.exports = {
     args: true,
     usage: '[Symbol] <Currency>',
     async execute(message, args) {
+
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
-
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();
 
         reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}/market_chart?vs_currency=${currency}&days=1`;
-
         const results = await fetch(reqURL)
             .then(response => response.json());
 
@@ -39,8 +40,6 @@ module.exports = {
                 gprices.push(tprice);
                 if (tprice > gmax) gmax = tprice;
                 else if (tprice < gmin) gmin = tprice;
-                // gprices2.push(results.market_caps[x][1]);
-                // gvolume.push(results.total_volumes[x][1])
             }
 
             for (x in glabels) {
@@ -51,37 +50,20 @@ module.exports = {
                 glabels[x] = hours + ':' + minutes.substr(-2);
             }
 
-
             const data = {
                 labels: glabels,
                 datasets: [{
-                        label: 'Price',
-                        data: gprices,
-                        borderColor: '#77dd77',
-                        borderWidth: 1.5,
-                        pointRadius: 0,
-                        // borderDash: [5, 3],
-                        showLine: true,
-                        steppedLine: true
-                    },
-                    // {
-                    //     label: 'Market Cap',
-                    //     data: gprices2,
-                    //     borderColor: '#bbeeee',
-                    //     pointBackgroundColor: '#bbeeee',
-                    //     pointBorderColor: '#bbeeee',
-                    //     borderDash: [5, 3]
-                    // },
-                    // {
-                    //     label: 'Volume',
-                    //     data: gvolume,
-                    //     borderColor: '#faffff',
-                    //     pointBackgroundColor: '#faffff',
-                    //     pointBorderColor: '#faffff'
-                    // }
-                ]
+                    label: 'Price',
+                    data: gprices,
+                    borderColor: '#77dd77',
+                    borderWidth: 1.5,
+                    pointRadius: 0,
+                    showLine: true,
+                    steppedLine: true
+                }]
 
             };
+
             const chartCallback = (ChartJS) => {
                 ChartJS.register({
                     id: 'background_color',
@@ -95,6 +77,7 @@ module.exports = {
                     },
                 })
             }
+
             const canvas = new CanvasRenderService(width, height, chartCallback);
 
             const config = {
@@ -141,7 +124,6 @@ module.exports = {
             fContext.fillText(`Price: ${gprice.toFixed(4)}     High: ${gmax.toFixed(4)}     Low: ${gmin.toFixed(4)}`, 10, 40);
 
             const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), 'welcome-image.png');
-
             message.channel.send(attachment)
         }
     },

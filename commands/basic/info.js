@@ -26,7 +26,6 @@ module.exports = {
                 .setColor(eColor)
                 .setTitle(results.name + ' (' + symbolName + ')')
                 .setURL(`https://www.coingecko.com/en/coins/${symbol}`)
-                // .setAuthor(symbolName + '/' + currency, results[0].image)
                 .addField('Current Price', `\`\`\`USD   : $${results.market_data.current_price.usd}\nEUR   : €${results.market_data.current_price.eur}\nINR   : ₹${results.market_data.current_price.inr}\nBTC   : Ƀ${results.market_data.current_price.btc}\nETH   : Ξ${results.market_data.current_price.eth}\n\`\`\``)
                 .addField('Market', `\`\`\`Market Cap      : $${results.market_data.market_cap.usd}\nMarket Cap Rank : ${results.market_data.market_cap_rank}\nVolume          : $${results.market_data.total_volume.usd}\`\`\``)
                 .addField('Price Change(%)', `\`\`\`24 Hours : ${results.market_data.price_change_percentage_24h.toFixed(2)}%\n7 Days   : ${results.market_data.price_change_percentage_7d.toFixed(2)}%\n30 Days  : ${results.market_data.price_change_percentage_30d.toFixed(2)}%\n1 year   : ${results.market_data.price_change_percentage_1y.toFixed(2)}%\n\`\`\``)

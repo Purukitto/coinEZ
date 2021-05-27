@@ -23,10 +23,8 @@ module.exports = {
                 const priceEmbed = new Discord.MessageEmbed()
                     .setColor('#ff6666')
                     .setTitle(results[0].current_price + '(' + results[0].price_change_24h.toFixed(2) + '%)')
-                    // .setURL()
                     .setAuthor(symbolName + '/' + currency, results[0].image)
                     .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low : ${results[0].low_24h}\`\`\``)
-                    // .setThumbnail('https://i.imgur.com/wSTFkRM.png')
 
                 message.channel.send(priceEmbed);
             }
@@ -36,8 +34,6 @@ module.exports = {
             symbol = cryptocurrencies[symbolName.toLowerCase()];
 
             reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
-
-
             const results = await fetch(reqURL)
                 .then(response => response.json());
 
@@ -45,10 +41,8 @@ module.exports = {
                 const priceEmbed = new Discord.MessageEmbed()
                     .setColor('#ff6666')
                     .setTitle(results[0].current_price + '(' + results[0].price_change_24h.toFixed(2) + '%)')
-                    // .setURL()
                     .setAuthor(symbolName + '/' + currency, results[0].image)
-                    .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low: ${results[0].low_24h}\`\`\``)
-                    // .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+                    .setDescription(`\`\`\`24h High: ${results[0].high_24h}\n24h Low: ${results[0].low_24h}\`\`\``);
 
                 message.channel.send(priceEmbed);
             }
