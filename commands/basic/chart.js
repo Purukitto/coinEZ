@@ -83,17 +83,7 @@ module.exports = {
                 data: data,
                 options: {
                     responsive: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: '         ' + symbolName + ' / ' + currency.toUpperCase() + ' (' + results.prices[results.prices.length - 1][1] + ')',
-                            align: 'start',
-                            color: '#faffff'
-                        }
-                    }
+                    plugins: {}
                 },
             };
 
