@@ -54,7 +54,7 @@ module.exports = {
                 gintent = 'Extremely greedy | Highly likely to invest';
             }
 
-            if (args.length < 1) {
+            if (args.length < 1 || !(args[0] == 'chart' || args[0] == 'charts' || args[0] == 'c')) {
                 const priceEmbed = new Discord.MessageEmbed()
                     .setColor('#ff6666')
                     .setTitle(gicon + ' | Current Index: ' + gprice)
@@ -63,6 +63,7 @@ module.exports = {
                     .setFooter('Data provided by Alternative.me');
                 return message.channel.send(priceEmbed);
             }
+
             const data = {
                 labels: glabels,
                 datasets: [{
