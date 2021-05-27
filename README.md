@@ -64,6 +64,13 @@ Discord bot to get cryptocurrency price, volume, market data, and over 7000 publ
  ##### Example: ``ezinfo doge`` ``ezcoin bnb`` ``ezi ada``
 <br>
 
+- ### ``ezfng``
+ ```aliases: ['fear', 'greed']```
+ <i>Check the current fear and greed index or see the chart for the last month!</i>
+ ##### Usage: ``ezfng <'chart'/'c'>``
+ ##### Example: ``ezfng`` ``ezfng c`` ``ezfear chart``
+<br>
+
 - ### ``eztrending``
  ```aliases: ['trend', 't']```
  <i>Top-3 trending coins on CoinGecko as searched by users in the last 24 hours!</i>
