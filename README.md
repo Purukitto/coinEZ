@@ -78,8 +78,11 @@ Discord bot to get cryptocurrency price, volume, market data, and over 7000 publ
 <br>
  
 ### Misc Commnands
-- ### ``ezinv`` or ``ezinvite`` Invite the bot to your own server!
- 
+- ##### ``ezinv`` or ``ezinvite`` Invite the bot to your own server!
+- ##### ``ezlinks`` or ``ezsocial`` See the important links related to the bot!
+- ##### ``ezping`` or ``ezhearbeat`` Check the current latency of the bot!
+- ##### ``ezstats`` or ``ezbotinfo`` Check important information about the bot!
+
 <br>
 <br>
 <hr>
