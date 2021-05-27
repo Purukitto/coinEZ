@@ -40,6 +40,8 @@ module.exports = {
                 else if (tprice < gmin) gmin = tprice;
             }
 
+            gprice = results.prices[results.prices.length - 1][1]
+
             for (x in glabels) {
                 unixTime = glabels[x];
                 var date = new Date(unixTime * 1000);
@@ -102,11 +104,9 @@ module.exports = {
 
             fContext.font = 'bold 15px arial';
 
-            if ((results.prices[results.prices.length - 1][1]) - (results.prices[results.prices.length - 2][1]) >= 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
+            if ((gprice) - (results.prices[results.prices.length - 2][1]) >= 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
             fContext.fillStyle = gbcolor;
             fContext.fillText(`${symbolName}/${currency} | 1 Day`, 10, 20);
-
-            gprice = results.prices[results.prices.length - 1][1]
 
             fContext.font = 'bold 12px arial';
             fContext.fillText(`Price: ${gprice.toFixed(4)}     High: ${gmax.toFixed(4)}     Low: ${gmin.toFixed(4)}`, 10, 40);
