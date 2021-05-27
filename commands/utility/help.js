@@ -6,7 +6,8 @@ module.exports = {
     aliases: ['commands', 'h'],
     usage: '[command name]',
     cooldown: 5,
-    execute(message, args) {
+    async execute(bot, message, args) {
+
         const data = [];
         const { commands } = message.client;
 

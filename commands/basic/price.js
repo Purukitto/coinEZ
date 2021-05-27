@@ -8,7 +8,7 @@ module.exports = {
     aliases: ['p'],
     args: true,
     usage: '[Symbol] <Currency>',
-    async execute(message, args) {
+    async execute(bot, message, args) {
 
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();

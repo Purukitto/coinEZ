@@ -5,7 +5,7 @@ module.exports = {
     name: 'trending',
     description: 'Top-3 trending coins on CoinGecko as searched by users in the last 24 hours!',
     aliases: ['trend', 't'],
-    async execute(message, args) {
+    async execute(bot, message, args) {
 
         reqURL = 'https://api.coingecko.com/api/v3/search/trending';
 

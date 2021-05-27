@@ -2,7 +2,8 @@ module.exports = {
     name: 'invite',
     description: 'Invite the bot to your own server!',
     aliases: ['inv'],
-    async execute(message, args) {
+    async execute(bot, message, args) {
+
         message.reply({
             embed: {
                 color: '#ff6666',

@@ -14,7 +14,7 @@ module.exports = {
     aliases: ['cx', 'c'],
     args: true,
     usage: '[Symbol] <Currency>',
-    async execute(message, args) {
+    async execute(bot, message, args) {
 
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
