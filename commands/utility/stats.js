@@ -5,7 +5,7 @@ const os = require('os');
 module.exports = {
     name: 'stats',
     aliases: ['botinfo', 'stat'],
-    description: 'Check the important information about the bot',
+    description: 'Check important information about the bot!',
     async execute(bot, message) {
         const usedMemory = os.totalmem() - os.freemem(),
             totalMemory = os.totalmem();
