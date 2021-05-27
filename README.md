@@ -2,7 +2,11 @@
 
 Get cryptocurrency price, volume, market data, and over 7000 publicly traded cryptocurrencies and more!
 
-![Status](https://img.shields.io/badge/Status-Online-green)
+[![Sparkline](https://stars.medv.io/Purukitto/coinEZ.svg)](https://stars.medv.io/Purukitto/coinEZ)
+
+![Status](https://img.shields.io/badge/Status-Online-green) [![Discord](https://img.shields.io/discord/847112067786080277?color=6A7EC2&logo=discord&logoColor=ffffff)](https://discord.gg/3VMG4X56Zh)
+
+
 
 
 ## Main Commands
