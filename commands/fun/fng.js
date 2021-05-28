@@ -7,10 +7,9 @@ const width = 600;
 const height = 400;
 
 module.exports = {
-    name: 'fear&greed',
-    description: 'Check the current fear and greed index or see the chart for the last month!',
+    name: 'fearngreed',
+    description: 'Check the current fear and greed index and info for the last month!',
     aliases: ['fear', 'gread', 'fng'],
-    usage: ['<\'chart\'/\'c\'>'],
     async execute(bot, message, args) {
 
         reqURL = `https://api.alternative.me/fng/?limit=30&date_format=world`;
