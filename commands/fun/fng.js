@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const { CanvasRenderService } = require('chartjs-node-canvas');
-const Canvas = require('canvas');
 
 // Globals
 const width = 600;
