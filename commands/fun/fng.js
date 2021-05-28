@@ -54,13 +54,13 @@ module.exports = {
             }
 
             if (args.length < 1 || !(args[0] == 'chart' || args[0] == 'charts' || args[0] == 'c')) {
-                const priceEmbed = new Discord.MessageEmbed()
+                const fngEmbed = new Discord.MessageEmbed()
                     .setColor('#ff6666')
                     .setTitle(gicon + ' | Current Index: ' + gprice)
                     .setAuthor('Fear and Greed Index')
                     .setDescription(`${gintent}\`\`\`30 Day High: ${gmax}\n30 Day Low : ${gmin}\`\`\``)
                     .setFooter('Data provided by Alternative.me');
-                return message.channel.send(priceEmbed);
+                return message.channel.send(fngEmbed);
             }
 
             const data = {
