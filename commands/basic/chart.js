@@ -104,14 +104,20 @@ module.exports = {
 
             fContext.font = 'bold 15px arial';
 
-            if ((gprice) - (results.prices[results.prices.length - 2][1]) >= 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
+            if ((gprice) - (results.prices[results.prices.length - 2][1]) >= 0) {
+                gbcolor = '#77dd77';
+                gbsymbol = '📈'
+            } else {
+                gbcolor = '#ff6961';
+                gbsymbol = '📉';
+            }
             fContext.fillStyle = gbcolor;
-            fContext.fillText(`${symbolName}/${currency} | 1 Day`, 10, 20);
+            fContext.fillText(`${gbsymbol} ${symbolName}/${currency} | 1 Day`, 10, 20);
 
             fContext.font = 'bold 12px arial';
             fContext.fillText(`Price: ${gprice.toFixed(4)}     High: ${gmax.toFixed(4)}     Low: ${gmin.toFixed(4)}`, 10, 40);
 
-            const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), 'welcome-image.png');
+            const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), `${symbolName}_${currency}.png`);
             message.channel.send(attachment)
         }
     },

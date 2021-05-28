@@ -1,16 +1,15 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const { CanvasRenderService } = require('chartjs-node-canvas');
-const Canvas = require('canvas');
 
 // Globals
 const width = 600;
 const height = 400;
 
 module.exports = {
-    name: 'fng',
+    name: 'fear&greed',
     description: 'Check the current fear and greed index or see the chart for the last month!',
-    aliases: ['fear', 'gread'],
+    aliases: ['fear', 'gread', 'fng'],
     usage: ['<\'chart\'/\'c\'>'],
     async execute(bot, message, args) {
 
@@ -20,7 +19,7 @@ module.exports = {
 
         if (results) {
 
-            gprice = results.data[0].value;
+            fngindex = results.data[0].value;
 
             glabels = []
             gvalues = []
@@ -36,37 +35,42 @@ module.exports = {
                 else if (tvalue < gmin) gmin = tvalue;
             }
 
-            if (gprice < 10) {
+            if (fngindex < 15) {
+                gicon = '😱';
+                gintent = 'Extreme fear';
+            } else if (fngindex < 40) {
                 gicon = '😨';
-                gintent = 'Extremely fearful | Not likely to invest';
-            } else if (gprice < 40) {
-                gicon = '😨';
-                gintent = 'Fearful | Less likely to invest';
-            } else if (gprice < 60) {
+                gintent = 'Fear';
+            } else if (fngindex < 60) {
                 gicon = '😐';
-                gintent = 'Neutral | Might invest';
-            } else if (gprice < 90) {
-                gicon = '😍';
-                gintent = 'Greedy | More likely to invest';
+                gintent = 'Neutral';
+            } else if (fngindex < 85) {
+                gicon = '🤩';
+                gintent = 'Greed';
             } else {
                 gicon = '😍';
-                gintent = 'Extremely greedy | Highly likely to invest';
+                gintent = 'Extreme greed';
             }
 
-            if (args.length < 1 || !(args[0] == 'chart' || args[0] == 'charts' || args[0] == 'c')) {
-                const priceEmbed = new Discord.MessageEmbed()
-                    .setColor('#ff6666')
-                    .setTitle(gicon + ' | Current Index: ' + gprice)
-                    .setAuthor('Fear and Greed Index')
-                    .setDescription(`${gintent}\`\`\`30 Day High: ${gmax}\n30 Day Low : ${gmin}\`\`\``)
-                    .setFooter('Data provided by Alternative.me');
-                return message.channel.send(priceEmbed);
-            }
+            const showBar = () => {
+                const progress = (fngindex / 100);
+                progressOutOf10 = Math.round(progress * 15);
+                const barStr = `${'<:blank:847786493003169793>'.repeat(progressOutOf10)}**${fngindex}%**\n<:scap:847780808198455306>${'<:gload:847780808332017684>'.repeat(progressOutOf10)}${'<:rload:847780808210776104>'.repeat(15 - progressOutOf10)}` + '<:ecap:847780808302395412>\nFear' + `${'<:blank:847786493003169793>'.repeat(14)}Greed`;
+                return barStr;
+            };
+
+            const fngEmbed = new Discord.MessageEmbed()
+                .setColor('#ff6666')
+                .setTitle('Current Index: ' + gintent + '  ' + gicon)
+                .setAuthor('Cryptocurrency Fear and Greed Index')
+                .setDescription(showBar() + `\n\`\`\`30 Day High: ${gmax}\n30 Day Low : ${gmin}\`\`\``)
+                .setFooter('Data provided by Alternative.me')
+                .setTimestamp();
 
             const data = {
                 labels: glabels,
                 datasets: [{
-                    label: 'Price',
+                    label: 'Cryptocurrency Fear and Greed Index',
                     data: gvalues,
                     borderColor: '#77dd77',
                     borderWidth: 1.5,
@@ -102,30 +106,13 @@ module.exports = {
                 },
             };
 
-            const gImageSRC = await canvas.renderToDataURL(config);
-            const gImage = await Canvas.loadImage(gImageSRC);
+            const gImage = await canvas.renderToBuffer(config);
+            const attachment = new Discord.MessageAttachment(gImage, 'fng.png');
 
-            const fCanvas = Canvas.createCanvas(width, height);
-            const fContext = fCanvas.getContext('2d');
-            fContext.drawImage(gImage, 0, 0, fCanvas.width, fCanvas.height);
 
-            fContext.fillStyle = "#161a25";
-            fContext.fillRect(0, 0, width, 60);
+            fngEmbed.attachFiles(attachment).setImage('attachment://fng.png');
 
-            const zimg = await Canvas.loadImage('https://i.ibb.co/QmJbGdZ/logog-01.png');
-            fContext.drawImage(zimg, 40, 315, 35, 35);
-
-            fContext.font = 'bold 15px arial';
-
-            if ((gprice) - (results.data[1].value) >= 0) { gbcolor = '#77dd77' } else gbcolor = '#ff6961'
-            fContext.fillStyle = gbcolor;
-            fContext.fillText(`Fear and Greed Index (${gintent})`, 10, 20);
-
-            fContext.font = 'bold 12px arial';
-            fContext.fillText(`Current: ${gprice}     High: ${gmax}     Low: ${gmin}`, 10, 40);
-
-            const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), 'welcome-image.png');
-            message.channel.send(attachment)
+            message.channel.send(fngEmbed);
         }
     },
 };

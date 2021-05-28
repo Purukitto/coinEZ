@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 const cryptocurrencies = require('../../cryptocurrencies.json');
 
 module.exports = {
-    name: 'price',
-    description: 'Check the current price and 24h changes of any cryptocurrencies against any other supported currencies that you need!',
-    aliases: ['p'],
+    name: 'quickprice',
+    description: 'Quickly check the current price of any cryptocurrencies against any other supported currencies that you need!',
+    aliases: ['qp', 'quick', 'q'],
     args: true,
     usage: '[Symbol] <Currency>',
     async execute(bot, message, args) {
@@ -32,10 +32,7 @@ module.exports = {
             const priceEmbed = new Discord.MessageEmbed()
                 .setColor(gcolor)
                 .setTitle(esymbol + '  ' + results[0].current_price + '(' + results[0].price_change_percentage_24h.toFixed(2) + '%)')
-                .setAuthor(symbolName + '/' + currency, results[0].image)
-                .setDescription(`\`\`\`24h High          : ${results[0].high_24h}\n24h Low           : ${results[0].low_24h}\nPrice change(24h) : ${results[0].price_change_24h}\`\`\`\n\nUse \`ezchart ${symbolName} ${currency}\` to view the graph for last 24 hours`)
-                .setFooter('Data provided by CoinGecko', 'https://cdn.discordapp.com/emojis/847767121793384488.png?v=1')
-                .setTimestamp();
+                .setAuthor(symbolName + '/' + currency, results[0].image);
             message.channel.send(priceEmbed);
         }
     },
