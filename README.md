@@ -12,7 +12,6 @@ CoinEZ is a discord bot to get cryptocurrency price, volume and market data of o
 
 #### New features being actively developed! [Join the support server](https://discord.gg/3VMG4X56Zh) or [Discussiong page on GitHub](https://github.com/Purukitto/coinEZ/discussions) for help or any suggestions!
 
-## Main Commands
 
 ## Here is a list of commands:
 - ### ``ezhelp``
