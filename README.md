@@ -1,6 +1,6 @@
  # coinEZ <img src="https://i.ibb.co/QmJbGdZ/logog-01.png" alt="CoinEZ Logo" height="100px" align="right" />
 
-Discord bot to get cryptocurrency price, volume, market data, and over 7000 publicly traded cryptocurrencies and more!
+CoinEZ is a discord bot to get cryptocurrency price, volume and market data of over 7000 publicly traded cryptocurrencies and more!
 
 [![Sparkline](https://stars.medv.io/Purukitto/coinEZ.svg)](https://stars.medv.io/Purukitto/coinEZ)
 
