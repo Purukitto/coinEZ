@@ -25,10 +25,8 @@ module.exports = {
         const showBar = () => {
             const progress = (results.sentiment_votes_up_percentage / 100);
             progressOutOf10 = Math.round(progress * 10);
-            // const x = "□";
             const barStr = `${'<:blank:847786493003169793>'.repeat(progressOutOf10)}**${results.sentiment_votes_up_percentage}%**\n<:scap:847780808198455306>${'<:gload:847780808332017684>'.repeat(progressOutOf10)}${'<:rload:847780808210776104>'.repeat(10 - progressOutOf10)}` + '<:ecap:847780808302395412>\nGood' + `${'<:blank:847786493003169793>'.repeat(9)}Bad`;
             return barStr;
-            // console.log(barStr);
         };
 
         if (results) {
