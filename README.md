@@ -4,7 +4,7 @@ CoinEZ is a discord bot to get cryptocurrency price, volume and market data of o
 
 [![Sparkline](https://stars.medv.io/Purukitto/coinEZ.svg)](https://stars.medv.io/Purukitto/coinEZ)
 
-![Status](https://img.shields.io/badge/Status-Online-green) [![Discord](https://img.shields.io/discord/847112067786080277?color=6A7EC2&logo=discord&logoColor=ffffff)](https://discord.gg/3VMG4X56Zh)
+![Status](https://img.shields.io/badge/Status-Online-green) [![Invite](https://img.shields.io/badge/Invite-For_your_server-blue)](https://discord.com/oauth2/authorize?client_id=846743549219045376&permissions=314432&scope=bot) [![Discord](https://img.shields.io/discord/847112067786080277?color=6A7EC2&logo=discord&logoColor=ffffff)](https://discord.gg/3VMG4X56Zh)
 
 ``Simple, easy to use and fast Cryptocurrency bot for Crypto servers and enthusiast. Price infomation, charts, coin info and a lot more underdevelopment.``
 
