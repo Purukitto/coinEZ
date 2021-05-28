@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const cryptocurrencies = require('../../cryptocurrencies.json');
-
+const { getColorFromURL } = require('color-thief-node');
 
 module.exports = {
     name: 'info',
@@ -19,8 +19,8 @@ module.exports = {
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        if (results.market_data.price_change_24h >= 0) eColor = '#77dd77'
-        else eColor = '#ff6961'
+        // if (results.market_data.price_change_24h >= 0) eColor = '#77dd77'
+        // else eColor = '#ff6961'
 
         const showBar = () => {
             const progress = (results.sentiment_votes_up_percentage / 100);
@@ -30,8 +30,9 @@ module.exports = {
         };
 
         if (results) {
+            const dominantColor = await getColorFromURL(results.image.small);
             const infoEmbed = new Discord.MessageEmbed()
-                .setColor(eColor)
+                .setColor(dominantColor)
                 .setTitle(results.name + ' (' + symbolName + ')')
                 .setURL(`https://www.coingecko.com/en/coins/${symbol}`)
                 .addField('💸 Current Price', `\`\`\`USD             : $${results.market_data.current_price.usd}\nEUR             : €${results.market_data.current_price.eur}\nINR             : ₹${results.market_data.current_price.inr}\nBTC             : Ƀ${results.market_data.current_price.btc}\nETH             : Ξ${results.market_data.current_price.eth}\n\`\`\``)
