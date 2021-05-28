@@ -19,9 +19,6 @@ module.exports = {
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        // if (results.market_data.price_change_24h >= 0) eColor = '#77dd77'
-        // else eColor = '#ff6961'
-
         const showBar = () => {
             const progress = (results.sentiment_votes_up_percentage / 100);
             progressOutOf10 = Math.round(progress * 10);
