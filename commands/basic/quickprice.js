@@ -4,7 +4,7 @@ const cryptocurrencies = require('../../cryptocurrencies.json');
 
 module.exports = {
     name: 'quickprice',
-    description: 'Check the current price of any cryptocurrencies against any other supported currencies that you need!',
+    description: 'Quickly check the current price of any cryptocurrencies against any other supported currencies that you need!',
     aliases: ['qp', 'quick', 'q'],
     args: true,
     usage: '[Symbol] <Currency>',
