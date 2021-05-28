@@ -14,32 +14,30 @@ CoinEZ is a discord bot to get cryptocurrency price, volume and market data of o
 
 ## Main Commands
 
-- ### Price
- <img src="https://i.ibb.co/tHm3pjF/Price.gif" alt="Price" width="330px"/>
-
- #### The price can also be checked against any other currency (eg. EUR,INR,etc.)
- <img src="https://i.ibb.co/0sRy8Q7/Price-Change.gif" alt="Price" width="330px"/>
-
-- ### Info
- <img src="https://i.ibb.co/GnRR7XH/Info.gif" alt="Price" width="330px"/>
-
-- ### Chart
- <img src="https://i.ibb.co/cJgB1Fz/Chart.gif" alt="Price" width="330px"/>
-
 ## Here is a list of commands:
 - ### ``ezhelp``
  ```aliases: ['commands', 'h']```
  
- <i>DM's you with a list of commands available to you.</i>
+ <i>List all of the available commands or get info about a specific command.</i>
 ##### Example: ``ezhelp`` ``ezhelp price``
 <br>
 
 - ### ``ezprice``
  ```aliases: ['p']```
 
- <i>Check the current price of any cryptocurrencies against any other supported currencies that you need!</i>
+ <i>Check the current price and 24h changes of any cryptocurrencies against any other supported currencies that you need!</i>
  ##### Usage: ``ezprice [Symbol] <Currency>``
  ##### Example: ``ezprice doge inr`` ``ezp bnb``
+ <img src="https://i.ibb.co/bR7xtXw/price.png" alt="Price" width="330px"/>
+<br>
+
+- ### ``ezquickprice``
+ ```aliases: ['q','qp','quick']```
+
+ <i>Quickly check the current price of any cryptocurrencies against any other supported currencies that you need!</i>
+ ##### Usage: ``ezprice [Symbol] <Currency>``
+ ##### Example: ``ezquick doge inr`` ``ezq bnb``
+ <img src="https://i.ibb.co/zXF8csQ/quickprice.png" alt="Price" width="330px"/>
 <br>
 
 - ### ``ezchart``
@@ -48,33 +46,36 @@ CoinEZ is a discord bot to get cryptocurrency price, volume and market data of o
  <i>View the price chart of any cryptocurrencies that you need!</i>
  ##### Usage: ``ezchart [Symbol] <Currency>``
  ##### Example: ``ezchart doge inr`` ``ezc bnb``
-<br>
-
-- ### ``ezchart``
- ```aliases: ['cx', 'c']```
- <i>View the price chart of any cryptocurrencies that you need!</i>
- ##### Usage: ``ezchart [Symbol] <Currency>``
- ##### Example: ``ezchart doge inr`` ``ezc bnb``
+ <img src="https://i.ibb.co/rdfGMkR/chart.png" alt="Price" width="330px"/>
 <br>
 
 - ### ``ezinfo``
  ```aliases: ['coin', 'i']```
+ 
  <i>Check the current price, market cap, etc. of any cryptocurrencies that you need!</i>
  ##### Usage: ``ezinfo [Symbol]``
  ##### Example: ``ezinfo doge`` ``ezcoin bnb`` ``ezi ada``
+ <img src="https://i.ibb.co/VDW97nM/info.png" alt="Price" width="330px"/>
+
 <br>
 
-- ### ``ezfng``
- ```aliases: ['fear', 'greed']```
- <i>Check the current fear and greed index or see the chart for the last month!</i>
- ##### Usage: ``ezfng <'chart'/'c'>``
- ##### Example: ``ezfng`` ``ezfng c`` ``ezfear chart``
+- ### ``ezfearngreed``
+ ```aliases: ['fng','fear', 'greed']```
+ 
+ <i>Check the current fear and greed index and info for the last month!</i>
+ ##### Usage: ``ezfng``
+ ##### Example: ``ezfng`` ``ezfear``
+ <img src="https://i.ibb.co/VBwH3mB/fng.png" alt="Price" width="330px"/>
+
 <br>
 
 - ### ``eztrending``
  ```aliases: ['trend', 't']```
+ 
  <i>Top-3 trending coins on CoinGecko as searched by users in the last 24 hours!</i>
  ##### Example: ``eztrending`` ``eztrend`` ``ezt``
+ <img src="https://i.ibb.co/V9rYfhT/trending.png" alt="Price" width="330px"/>
+
 <br>
  
 ### Misc Commnands
