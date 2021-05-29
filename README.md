@@ -58,6 +58,15 @@ CoinEZ is a discord bot to get cryptocurrency price, volume and market data of o
 
 <br>
 
+- ### ``ezpricexchange``
+ ```aliases: ['px', 'x']```
+
+ <i>Check the current price,volume,etc for cryptocurrencies on supported exchanges (top 3 target currencies)!</i>
+ ##### Usage: ``ezpricexchange [Symbol] [Exchange]``
+ ##### Example: ``ezx doge wazirx`` ``ezpx bnb binance``
+ <img src="https://i.ibb.co/RQYM7ch/exchange.png" alt="Price" width="330px"/>
+<br>
+
 - ### ``ezfearngreed``
  ```aliases: ['fng','fear', 'greed']```
  
