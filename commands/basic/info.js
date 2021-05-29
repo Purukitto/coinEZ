@@ -19,7 +19,7 @@ module.exports = {
                 .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
                 .setColor('#ff6961')
                 .setTitle('Symbol not supported')
-                .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezchart [Symbol] Exchange]`')
+                .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezinfo [Symbol]`')
                 .setTimestamp();
 
             return message.reply(reply);
