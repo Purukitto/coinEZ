@@ -13,7 +13,6 @@ module.exports = {
     usage: '[Symbol] [Exchange]',
     async execute(bot, message, args) {
 
-        if (args.length != 2) console.log('error1');
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
 
