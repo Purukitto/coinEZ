@@ -13,9 +13,30 @@ module.exports = {
     usage: '[Symbol] [Exchange]',
     async execute(bot, message, args) {
 
-        if (args.length != 2) console.log('error1');
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
+
+        if (!symbol) {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Symbol not supported')
+                .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
+
+        if (!args[1]) {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #1', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Exchange name missing')
+                .setDescription('You didn\'t input any exchange name!\nThe proper usage is: `ezchart [Symbol] Exchange]`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
         exchange = args[1].trim();
 
         reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}/tickers?exchange_ids=${exchange}&include_exchange_logo=true`;
@@ -23,8 +44,7 @@ module.exports = {
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        if (results) {
-
+        if (results.tickers[0]) {
             const chartCallback = (ChartJS) => {
                 ChartJS.register({
                     id: 'background_color',
@@ -101,6 +121,15 @@ module.exports = {
             xEmbed.attachFiles(attachment).setImage('attachment://trade_dist.png');
 
             message.channel.send(xEmbed);
+        } else {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Exchange name invalid')
+                .setDescription('No data was returned, the input exchange is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')
+                .setTimestamp();
+
+            return message.reply(reply);
         }
     },
 };

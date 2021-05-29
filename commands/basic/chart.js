@@ -3,8 +3,6 @@ const Discord = require('discord.js');
 const cryptocurrencies = require('../../cryptocurrencies.json');
 const { CanvasRenderService } = require('chartjs-node-canvas');
 const Canvas = require('canvas');
-
-// Globals
 const width = 600;
 const height = 400;
 
@@ -18,6 +16,17 @@ module.exports = {
 
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
+        if (!symbol) {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Symbol not supported')
+                .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezchart [Symbol] <Currency>`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
+
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();
 
@@ -25,8 +34,7 @@ module.exports = {
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        if (results) {
-
+        if (results.prices) {
             glabels = []
             gprices = []
             gmax = 0;
@@ -119,6 +127,15 @@ module.exports = {
 
             const attachment = new Discord.MessageAttachment(fCanvas.toBuffer(), `${symbolName}_${currency}.png`);
             message.channel.send(attachment)
+        } else {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Currency name invalid')
+                .setDescription('No data was returned, the input currency is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] <Currency>`')
+                .setTimestamp();
+
+            return message.reply(reply);
         }
     },
 };

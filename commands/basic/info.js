@@ -14,6 +14,17 @@ module.exports = {
         symbolName = args[0].toUpperCase();
         symbol = cryptocurrencies[symbolName.toLowerCase()];
 
+        if (!symbol) {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Symbol not supported')
+                .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezinfo [Symbol]`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
+
         reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
 
         const results = await fetch(reqURL)

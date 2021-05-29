@@ -35,24 +35,42 @@ client.on('message', message => {
     if (!command) return;
 
     if (command.guildOnly && message.channel.type === 'dm') {
-        return message.reply('I can\'t execute that command inside DMs!');
+        const reply = new Discord.MessageEmbed()
+            .setAuthor('Error #0', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setColor('#ff6961')
+            .setTitle('Invalid channel')
+            .setDescription('I can\'t execute that command inside DMs!')
+            .setTimestamp();
+
+        return message.reply(reply);
     }
 
     if (command.permissions) {
         const authorPerms = message.channel.permissionsFor(message.author);
         if (!authorPerms || !authorPerms.has(command.permissions)) {
-            return message.reply('You can not do this!');
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #0', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Permission missing')
+                .setDescription('You don\'t have permisson to use this command!')
+                .setTimestamp();
+
+            return message.reply(reply);
         }
     }
 
     if (command.args && !args.length) {
-        let reply = `You didn't provide any arguments, ${message.author}!`;
+        const reply = new Discord.MessageEmbed()
+            .setAuthor('Error #1', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setColor('#ff6961')
+            .setTitle('Incorrect Arguments')
+            .setTimestamp();
 
         if (command.usage) {
-            reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
-        }
+            reply.setDescription(`You didn\'t provide any arguments\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``);
+        } else reply.setDescription('You didn\'t provide any arguments');
 
-        return message.channel.send(reply);
+        return message.reply(reply);
     }
 
     const { cooldowns } = client;
@@ -81,7 +99,14 @@ client.on('message', message => {
         command.execute(client, message, args);
     } catch (error) {
         console.error(error);
-        message.reply('there was an error trying to execute that command!');
+        const reply = new Discord.MessageEmbed()
+            .setAuthor('Error #X', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setColor('#ff6961')
+            .setTitle('Unknown error')
+            .setDescription('Failed to execute command!' + error)
+            .setTimestamp();
+
+        return message.reply(reply);
     }
 });
 
