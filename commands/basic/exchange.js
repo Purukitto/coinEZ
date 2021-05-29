@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 const cryptocurrencies = require('../../cryptocurrencies.json');
 const { getColorFromURL } = require('color-thief-node');
 const { CanvasRenderService } = require('chartjs-node-canvas');
-const width = 400;
-const height = 400;
+const width = 350;
+const height = 320;
 module.exports = {
     name: 'pricexchange',
     description: 'Check the current price,volume,etc for cryptocurrencies on supported exchanges (top 3 target currencies)!',
