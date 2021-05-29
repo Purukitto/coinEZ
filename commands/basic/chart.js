@@ -53,7 +53,7 @@ module.exports = {
             const data = {
                 labels: glabels,
                 datasets: [{
-                    label: 'Price',
+                    label: `${symbolName} price vs ${currency} in last 24 hours`,
                     data: gprices,
                     borderColor: '#77dd77',
                     borderWidth: 1.5,
@@ -92,15 +92,15 @@ module.exports = {
             const gImageSRC = await canvas.renderToDataURL(config);
             const gImage = await Canvas.loadImage(gImageSRC);
 
-            const fCanvas = Canvas.createCanvas(width, height);
+            const fCanvas = Canvas.createCanvas(width, height + 60);
             const fContext = fCanvas.getContext('2d');
-            fContext.drawImage(gImage, 0, 0, fCanvas.width, fCanvas.height);
+            fContext.drawImage(gImage, 0, 60, fCanvas.width, fCanvas.height);
 
             fContext.fillStyle = "#161a25";
             fContext.fillRect(0, 0, width, 60);
 
             const zimg = await Canvas.loadImage('https://i.ibb.co/3F1MT0N/logog-03.png');
-            fContext.drawImage(zimg, 50, 315, 115.49, 31.5);
+            fContext.drawImage(zimg, 50, 415, 115.49, 31.5);
 
             fContext.font = 'bold 15px arial';
 
