@@ -10,14 +10,13 @@ module.exports = {
     name: 'fearngreed',
     description: 'Check the current fear and greed index and info for the last month!',
     aliases: ['fear', 'gread', 'fng'],
-    async execute(bot, message, args) {
+    async execute(bot, message) {
 
         reqURL = `https://api.alternative.me/fng/?limit=30&date_format=world`;
         const results = await fetch(reqURL)
             .then(response => response.json());
 
-        if (results) {
-
+        if (results.data) {
             fngindex = results.data[0].value;
 
             glabels = []
@@ -112,6 +111,15 @@ module.exports = {
             fngEmbed.attachFiles(attachment).setImage('attachment://fng.png');
 
             message.channel.send(fngEmbed);
+        } else {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #4', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('API response invalid')
+                .setDescription('No data was returned, please try again later!')
+                .setTimestamp();
+
+            return message.reply(reply);
         }
     },
 };
