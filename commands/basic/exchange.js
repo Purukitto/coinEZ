@@ -10,7 +10,7 @@ module.exports = {
     description: 'Check the current price,volume,etc for cryptocurrencies on supported exchanges (top 3 target currencies)!',
     aliases: ['px', 'x'],
     args: true,
-    usage: '[Symbol] [Currency]',
+    usage: '[Symbol] [Exchange]',
     async execute(bot, message, args) {
 
         if (args.length != 2) console.log('error1');
