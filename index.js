@@ -1,5 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+const { connectDB } = require("./database");
+
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 const client = new Discord.Client();
@@ -16,14 +18,15 @@ for (const folder of commandFolders) {
     }
 }
 
-client.once('ready', () => {
+client.once('ready', async() => {
     client.user.setActivity('Crypto 🚀🌕', {
         type: 'WATCHING',
     });
     console.log('Ready!');
+    connectDB();
 });
 
-client.on('message', message => {
+client.on('message', async(message) => {
     if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -87,8 +90,27 @@ client.on('message', message => {
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
         if (now < expirationTime) {
-            const timeLeft = (expirationTime - now) / 1000;
-            return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+            let timeLeft = (expirationTime - now) / 1000;
+            let timeUnit = 'second(s)';
+            if (timeLeft >= 60) {
+                timeLeft = timeLeft / 60;
+                timeUnit = 'minutes(s)';
+            }
+            if (timeLeft >= 60) {
+                timeLeft = timeLeft / 60;
+                timeUnit = 'hour(s)';
+            }
+            if (timeLeft >= 24) {
+                timeLeft = timeLeft / 24;
+                timeUnit = 'day(s)';
+            }
+            const reply = new Discord.MessageEmbed()
+                .setColor('#ff6961')
+                .setTitle(`⏲️ ${command.name} is on cooldown!`)
+                .setDescription(`Please wait ${timeLeft.toFixed(1)} more ${timeUnit} before reusing the \`${command.name}\` command.`)
+                .setTimestamp();
+
+            return message.reply(reply);
         }
     }
 
@@ -103,7 +125,8 @@ client.on('message', message => {
             .setAuthor('Error #X', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
             .setColor('#ff6961')
             .setTitle('Unknown error')
-            .setDescription('Failed to execute command!' + error)
+            .setDescription('Failed to execute command! ```' + error + '```')
+            .setFooter('Please contact the developer about this so it can be solved ASAP!')
             .setTimestamp();
 
         return message.reply(reply);
