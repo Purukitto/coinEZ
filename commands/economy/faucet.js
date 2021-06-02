@@ -15,7 +15,7 @@ module.exports = {
         const daily = Number((Math.random() * (10 - 3) + 3).toFixed(4));
         const rdaily = Math.ceil(daily);
 
-        const result = await dbclient.db().collection("userData").findOneAndUpdate({ id: message.author.id }, { $set: { bank: 0 }, $inc: { bal: daily } }, { upsert: true, returnDocument: 'after' });
+        const result = await dbclient.db().collection("userData").findOneAndUpdate({ id: message.author.id }, { $inc: { bal: daily, bank: 0 } }, { upsert: true, returnDocument: 'after' });
         if (result.ok) {
             const mresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'mint' }, { $inc: { bal: rdaily } });
             if (!mresult.ok) return;
