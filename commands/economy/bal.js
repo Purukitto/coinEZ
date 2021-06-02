@@ -26,9 +26,12 @@ module.exports = {
                 deptime = 0
             } else deptime = result[0].depTime;
 
+            bankbal = result[0].bank;
+            if (bankbal === undefined) bankbal = 0;
+
             let dtime = message.createdTimestamp - deptime;
             dtime = dtime / 31556952000;
-            const bankbal = result[0].bank * (1 + ((7 * dtime) / 100));
+            bankbal = bankbal * (1 + ((7 * dtime) / 100));
 
             balance.setDescription(`<:ezgold:848597364322074625> \`${result[0].bal}\`\n🏦 \`${bankbal}\``);
         }
