@@ -11,19 +11,18 @@ module.exports = {
         const dbclient = await getClient();
 
         const result = await dbclient.db().collection("userData").find({ "id": { $eq: message.author.id } }).toArray();
-        let amount = Number(args[0]);
-
-        if (isNaN(amount) && (args[0].toLowerCase() == 'all' || args[0].toLowerCase() == 'bal')) amount = result[0].bank;
-        else if (isNaN(amount)) amount = -1;
-
-        if (amount <= 0) return console.log('Not applicable');
 
         if (!result[0].depTime) {
             deptime = 0
         } else deptime = result[0].depTime;
         let dtime = message.createdTimestamp - deptime;
         dtime = dtime / 31556952000;
-        const bankbal = result[0].bank * (1 + ((7 * dtime) / 100));
+        const bankbal = result[0].bank * (1 + ((5 * dtime) / 100));
+
+        let amount = Number(args[0]);
+        if (isNaN(amount) && (args[0].toLowerCase() == 'all' || args[0].toLowerCase() == 'bal')) amount = bankbal;
+        else if (isNaN(amount)) amount = -1;
+        if (amount <= 0) return console.log('Not applicable');
 
         if (bankbal >= amount) {
             try {

@@ -31,7 +31,7 @@ module.exports = {
 
             let dtime = message.createdTimestamp - deptime;
             dtime = dtime / 31556952000;
-            bankbal = bankbal * (1 + ((7 * dtime) / 100));
+            bankbal = bankbal * (1 + ((5 * dtime) / 100));
 
             balance.setDescription(`<:ezgold:848597364322074625> \`${result[0].bal}\`\n🏦 \`${bankbal}\``);
         }
