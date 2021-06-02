@@ -28,12 +28,11 @@ module.exports = {
 
             bankbal = result[0].bank;
             if (bankbal === undefined) bankbal = 0;
-            console.log(bankbal)
 
             let dtime = message.createdTimestamp - deptime;
             dtime = dtime / 31556952000;
             bankbal = bankbal * (1 + ((7 * dtime) / 100));
-            console.log(bankbal)
+
             if (bankbal == 0) balance.setDescription(`You have not desposited any amount in the bank! \n You bank balance is <:ezgold:848597364322074625> \`0\``);
             else balance.setDescription(`You have <:ezgold:848597364322074625> \`${bankbal}\` in your savings account! \`ezwithdraw [amount]\` to withdraw any amount!`);
         }
