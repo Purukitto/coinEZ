@@ -11,7 +11,7 @@ module.exports = {
         const dbclient = await getClient();
         const result = await dbclient.db().collection("economyData").find({ "id": { $in: ['mint', 'dust', 'bank'] } }).toArray();
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=bnb&ids=ethereum&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
+        reqURL = process.env.MREQURL;
         const results = await fetch(reqURL)
             .then(response => response.json());
 
