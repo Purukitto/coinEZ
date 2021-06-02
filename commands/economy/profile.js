@@ -34,8 +34,9 @@ module.exports = {
 
         const canvas = Canvas.createCanvas(472, 300);
         const context = canvas.getContext('2d');
-        const background = await Canvas.loadImage('https://probot.media/store/549.png');
+        const background = await Canvas.loadImage('https://i.ibb.co/XkXTRBy/modern-abstract-background-117739-545-1.jpg');
         const roundRad = 20;
+
         context.beginPath();
         context.moveTo(0 + roundRad, 0);
         context.lineTo(0 + canvas.width - roundRad, 0);
@@ -69,7 +70,11 @@ module.exports = {
         context.quadraticCurveTo(425, 265, canvas.width, 245);
         context.closePath();
         context.clip();
-        context.fillStyle = "rgba(78, 93, 148, 0.5)";
+        // context.fillStyle = "rgba(250, 250, 250, 0.3)";
+        // context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "rgba(0, 0, 0, 0.5)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "rgba(255, 105, 97, 0.6)";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         const brand = await Canvas.loadImage('https://i.ibb.co/r50Kt8j/card-Asset.png');
@@ -80,12 +85,12 @@ module.exports = {
 
         context.fillStyle = '#ffffff';
         context.font = '22px arial black';
-        context.fillText("BALANCE: " + (Number(result[0].bal) + bankbal).toFixed(2), 40, 240);
+        context.fillText("BALANCE: " + (Number(result[0].bal) + bankbal).toFixed(2), 40, 260);
         context.font = '15px arial black';
         let aname = message.author.username;
         if (aname.length > 24) aname = aname.substring(0, 24);
         else aname = aname + '#' + message.author.discriminator;
-        context.fillText(aname, 41, 267);
+        context.fillText(aname, 41, 277.5);
 
         context.beginPath();
         context.arc(380, 220, 35, 0, Math.PI * 2, true);
