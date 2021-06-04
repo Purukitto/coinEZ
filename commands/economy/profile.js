@@ -5,7 +5,7 @@ const Canvas = require('canvas');
 module.exports = {
     name: 'profile',
     aliases: ['rank'],
-    description: 'Check your ⓩ balance!',
+    description: 'Check your CoinEZ profile card!',
     async execute(bot, message) {
 
         const dbclient = await getClient();

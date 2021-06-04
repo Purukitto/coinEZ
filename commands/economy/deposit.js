@@ -6,6 +6,7 @@ module.exports = {
     name: 'deposit',
     aliases: ['dep'],
     description: 'Deposit your ⓩ\'s to the CoinEZ Bank!',
+    usage: '[amount]',
     async execute(bot, message, args) {
 
         const dbclient = await getClient();
