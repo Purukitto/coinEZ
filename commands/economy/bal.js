@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const { getClient } = require("../../database");
 
 module.exports = {
-    name: 'bal',
-    aliases: ['balance', 'b'],
+    name: 'balance',
+    aliases: ['bal', 'b'],
     description: 'Check your ⓩ balance!',
     async execute(bot, message) {
 
