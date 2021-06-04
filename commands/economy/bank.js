@@ -3,7 +3,7 @@ const { getClient } = require("../../database");
 
 module.exports = {
     name: 'bank',
-    aliases: ['savings'],
+    aliases: ['saving'],
     description: 'Check your bank balance!',
     async execute(bot, message) {
 
