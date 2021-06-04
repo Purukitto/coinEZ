@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 
 module.exports = {
         name: 'help',
-        description: 'List all of the available commands or get info about a specific command.',
-        aliases: ['commands', 'h'],
-        usage: '[command name]',
-        cooldown: 5,
+        description: 'List all of the available commands or get info about a specific command!',
+        aliases: ['commands'],
+        usage: '<Command Name>',
+        cooldown: 2,
         async execute(bot, message, args) {
             const data = new Discord.MessageEmbed()
                 .setAuthor('CoinEZ Help', bot.user.avatarURL())
