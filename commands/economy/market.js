@@ -4,7 +4,6 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'market',
-    aliases: ['m'],
     description: 'Check the status of the ⓩ market!',
     async execute(bot, message) {
 
