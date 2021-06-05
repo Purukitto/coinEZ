@@ -19,11 +19,10 @@ module.exports = {
                 .setTitle(`🪙 CoinEZ Market Stats`)
                 .setColor('#FFD700')
                 .setFooter('Remember EZGold is just game currency!')
-                .setThumbnail('https://cdn.discordapp.com/emojis/847767121613815818.png?v=1')
+                .setThumbnail('https://cdn.discordapp.com/emojis/848597364322074625.png?v=1')
                 .addField('💸 Current Market', `\`\`\`USD                : $${results[0].current_price}\nMarket Cap         : $${result[0].bal * results[0].current_price}\`\`\``)
                 .addField('🛒 Volume Distribution', `\`\`\`Total volume       : ${result[0].bal}\nContract Holdings  : ${result[1].bal}\nUser Holdings      : ${result[0].bal - result[1].bal -result[2].bal}\nDust               : ${result[2].bal}\`\`\``)
                 .addField('💹 Price Change(%)', `\`\`\`24 Hours           : ${results[0].price_change_percentage_24h.toFixed(2)}%\`\`\``);
-            // .setDescription(`Price: $\`${result[0].bal}\``);
             message.channel.send(balance);
         }
     },
