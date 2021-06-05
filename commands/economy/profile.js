@@ -12,14 +12,24 @@ module.exports = {
 
         var rank = 0;
 
+
+        const result = await dbclient.db().collection("userData").find({ "id": { $eq: message.author.id } }).toArray();
+        if (!result[0]) {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('Error #5', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Account not found!')
+                .setDescription('Your account is not active so you can\'t view your rank yet!\nUse `ezfaucet` `ezmine` `ezsweep` to earn some <:ezgold:848597364322074625> so you can get started!')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
+
         const sortRes = await dbclient.db().collection("userData").find().sort({ 'bal': -1, 'bank': -1 }).toArray();
         sortRes.some(function(el) {
             rank++;
             return el.id == message.author.id;
         });
-
-        const result = await dbclient.db().collection("userData").find({ "id": { $eq: message.author.id } }).toArray();
-        if (!result) return;
 
         if (!result[0].depTime) {
             deptime = 0
@@ -70,8 +80,7 @@ module.exports = {
         context.quadraticCurveTo(425, 265, canvas.width, 245);
         context.closePath();
         context.clip();
-        // context.fillStyle = "rgba(250, 250, 250, 0.3)";
-        // context.fillRect(0, 0, canvas.width, canvas.height);
+
         context.fillStyle = "rgba(0, 0, 0, 0.5)";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "rgba(255, 105, 97, 0.6)";

@@ -33,8 +33,8 @@ module.exports = {
             dtime = dtime / 31556952000;
             bankbal = bankbal * (1 + ((5 * dtime) / 100));
 
-            if (bankbal == 0) balance.setDescription(`You have not desposited any amount in the bank! \n You bank balance is <:ezgold:848597364322074625> \`0\``);
-            else balance.setDescription(`You have <:ezgold:848597364322074625> \`${bankbal}\` in your savings account! \`ezwithdraw [amount]\` to withdraw any amount!`);
+            if (bankbal == 0) balance.setDescription(`You have not desposited any amount in the bank!\n Use \`ezdeposit [amount]\` to deposit desired amount or \`ezdeposit all\` to deposit everything you own!`);
+            else balance.setDescription(`You have <:ezgold:848597364322074625> \`${bankbal}\` in your savings account!\n Use \`ezwithdraw [amount]\` to withdraw desired amount!`);
         }
         message.channel.send(balance);
     },

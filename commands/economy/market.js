@@ -24,6 +24,17 @@ module.exports = {
                 .addField('🛒 Volume Distribution', `\`\`\`Total volume       : ${result[0].bal}\nContract Holdings  : ${result[1].bal}\nUser Holdings      : ${result[0].bal - result[1].bal -result[2].bal}\nDust               : ${result[2].bal}\`\`\``)
                 .addField('💹 Price Change(%)', `\`\`\`24 Hours           : ${results[0].price_change_percentage_24h.toFixed(2)}%\`\`\``);
             message.channel.send(balance);
+        } else {
+            const reply = new Discord.MessageEmbed()
+                .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setColor('#ff6961')
+                .setTitle('Unknown error')
+                .setDescription('There was some issue with the database')
+                .setFooter('Please contact the developer about this so it can be solved ASAP!')
+                .setTimestamp();
+
+            return message.reply(reply);
         }
+
     },
 };
