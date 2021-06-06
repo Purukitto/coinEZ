@@ -16,7 +16,7 @@ module.exports = {
 
         if (!symbol) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #2', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Symbol not supported')
                 .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezinfo [Symbol]`')
@@ -54,7 +54,7 @@ module.exports = {
                 infoEmbed.addField('💹 Price Change(%)', `\`\`\`24 Hours        : ${results.market_data.price_change_percentage_24h.toFixed(2)}%\n7 Days          : ${results.market_data.price_change_percentage_7d.toFixed(2)}%\n30 Days         : ${results.market_data.price_change_percentage_30d.toFixed(2)}%\n1 year          : ${results.market_data.price_change_percentage_1y.toFixed(2)}%\n\`\`\``)
             }
             infoEmbed.addField('Sentiment', showBar())
-                .setFooter('Data provided by CoinGecko', 'https://cdn.discordapp.com/emojis/847767121793384488.png?v=1')
+                .setFooter('Data provided by CoinGecko', process.env.GECKOEMO)
                 .setTimestamp();
 
             message.channel.send(infoEmbed);

@@ -15,7 +15,7 @@ module.exports = {
 
         if (!symbol) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #2', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Symbol not supported')
                 .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezprice [Symbol] <Currency>`')
@@ -47,12 +47,12 @@ module.exports = {
                 .setTitle(esymbol + '  ' + results[0].current_price + changePerc)
                 .setAuthor(symbolName + '/' + currency, results[0].image)
                 .setDescription(`\`\`\`24h High          : ${results[0].high_24h}\n24h Low           : ${results[0].low_24h}\nPrice change(24h) : ${results[0].price_change_24h}\`\`\`\n\nUse \`ezchart ${symbolName} ${currency}\` to view the graph for last 24 hours`)
-                .setFooter('Data provided by CoinGecko', 'https://cdn.discordapp.com/emojis/847767121793384488.png?v=1')
+                .setFooter('Data provided by CoinGecko', process.env.GECKOEMO)
                 .setTimestamp();
             message.channel.send(priceEmbed);
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #3', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Currency name invalid')
                 .setDescription('No data was returned, the input currency is not supported or invalid!\nThe proper usage is: `ezprice [Symbol] <Currency>`')

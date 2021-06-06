@@ -16,7 +16,7 @@ module.exports = {
         const result = await dbclient.db().collection("userData").find({ "id": { $eq: message.author.id } }).toArray();
         if (!result[0]) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #5', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #5', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Account not found!')
                 .setDescription('Your account is not active so you can\'t view your rank yet!\nUse `ezfaucet` `ezmine` `ezsweep` to earn some <:ezgold:848597364322074625> so you can get started!')
@@ -44,7 +44,7 @@ module.exports = {
 
         const canvas = Canvas.createCanvas(472, 300);
         const context = canvas.getContext('2d');
-        const background = await Canvas.loadImage('https://i.ibb.co/XkXTRBy/modern-abstract-background-117739-545-1.jpg');
+        const background = await Canvas.loadImage(process.env.CARDBGB);
         const roundRad = 20;
 
         context.beginPath();
@@ -86,10 +86,10 @@ module.exports = {
         context.fillStyle = "rgba(255, 105, 97, 0.6)";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        const brand = await Canvas.loadImage('https://i.ibb.co/r50Kt8j/card-Asset.png');
+        const brand = await Canvas.loadImage(process.env.LOGO);
         context.drawImage(brand, 25, 35, 254 / 2, 128 / 2);
 
-        const chip = await Canvas.loadImage('https://i.ibb.co/x5hq8MQ/cardChip.png');
+        const chip = await Canvas.loadImage(process.env.CHIP);
         context.drawImage(chip, 30, 110, 128 / 2, 128 / 2);
 
         context.fillStyle = '#ffffff';

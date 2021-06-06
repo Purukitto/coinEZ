@@ -15,7 +15,7 @@ module.exports = {
 
         if (!result[0]) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #5', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #5', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Account not found!')
                 .setDescription('Your account is not active so you can\'t withdraw anything yet!\nUse `ezfaucet` `ezmine` `ezsweep` to earn some <:ezgold:848597364322074625> so you can get started!')
@@ -36,7 +36,7 @@ module.exports = {
         else if (isNaN(amount)) amount = -1;
         if (amount <= 0) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #6', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #6', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Invalid Input!')
                 .setDescription('The amount you entered is not valid to be withdrawn!\nUse values greater than `0`!')
@@ -62,7 +62,7 @@ module.exports = {
             } catch (err) {
                 console.log(err);
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')
@@ -73,7 +73,7 @@ module.exports = {
             }
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #6', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #6', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Invalid Input!')
                 .setDescription('The amount you entered is greater than what your have in your bank!\nUse values less than your bank balance or `ezdep all` to deposit everything at once\n Currently you have <:ezgold:848597364322074625>`' + bankbal + '` in your account!')

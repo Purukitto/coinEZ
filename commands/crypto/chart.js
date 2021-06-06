@@ -18,7 +18,7 @@ module.exports = {
         symbol = cryptocurrencies[symbolName.toLowerCase()];
         if (!symbol) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #2', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Symbol not supported')
                 .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezchart [Symbol] <Currency>`')
@@ -37,7 +37,7 @@ module.exports = {
         if (results.prices) {
             if (results.prices.length < 5) {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('Error #3', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Price history not available')
                     .setDescription('Not enough data was returned for the price of the input currency, please try after a few days!')
@@ -118,7 +118,7 @@ module.exports = {
             fContext.fillStyle = "#161a25";
             fContext.fillRect(0, 0, width, 60);
 
-            const zimg = await Canvas.loadImage('https://i.ibb.co/3F1MT0N/logog-03.png');
+            const zimg = await Canvas.loadImage(process.env.BRANDING);
             fContext.drawImage(zimg, 80, 375, 115.49, 31.5);
 
             fContext.font = 'bold 15px arial';
@@ -140,7 +140,7 @@ module.exports = {
             message.channel.send(attachment)
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #3', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Currency name invalid')
                 .setDescription('No data was returned, the input currency is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] <Currency>`')

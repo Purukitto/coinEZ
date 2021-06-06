@@ -12,7 +12,7 @@ module.exports = {
     aliases: ['fear', 'gread', 'fng'],
     async execute(bot, message) {
 
-        reqURL = `https://api.alternative.me/fng/?limit=30&date_format=world`;
+        reqURL = process.env.FNGAPI;
         const results = await fetch(reqURL)
             .then(response => response.json());
 
@@ -113,7 +113,7 @@ module.exports = {
             message.channel.send(fngEmbed);
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #4', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #4', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('API response invalid')
                 .setDescription('No data was returned, please try again later!')

@@ -9,7 +9,7 @@ module.exports = {
         async execute(bot, message, args) {
             const data = new Discord.MessageEmbed()
                 .setAuthor('CoinEZ Help', bot.user.avatarURL())
-                .setThumbnail('https://i.ibb.co/DC3bfDz/helpicon.png');
+                .setThumbnail(process.env.HELP);
             const { commands } = message.client;
 
             if (!args.length) {

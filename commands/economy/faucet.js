@@ -20,7 +20,7 @@ module.exports = {
             const mresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'mint' }, { $inc: { bal: rdaily } });
             if (!mresult.ok) {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')
@@ -32,7 +32,7 @@ module.exports = {
             const dresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'dust' }, { $inc: { bal: rdaily - daily } });
             if (!dresult.ok) {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')

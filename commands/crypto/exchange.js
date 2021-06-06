@@ -18,7 +18,7 @@ module.exports = {
 
         if (!symbol) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #2', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #2', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Symbol not supported')
                 .setDescription('Your symbol input didn\'t match any supported crypto!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')
@@ -29,7 +29,7 @@ module.exports = {
 
         if (!args[1]) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #1', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #1', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Exchange name missing')
                 .setDescription('You didn\'t input any exchange name!\nThe proper usage is: `ezchart [Symbol] Exchange]`')
@@ -64,7 +64,7 @@ module.exports = {
             const xEmbed = new Discord.MessageEmbed()
                 .setColor(dominantColor)
                 .setAuthor(symbolName + ' on ' + results.tickers[0].market.name, results.tickers[0].market.logo)
-                .setFooter('Data provided by CoinGecko', 'https://cdn.discordapp.com/emojis/847767121793384488.png?v=1')
+                .setFooter('Data provided by CoinGecko', process.env.GECKOEMO)
                 .setTimestamp();
 
             glabels = [];
@@ -123,7 +123,7 @@ module.exports = {
             message.channel.send(xEmbed);
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #3', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Exchange name invalid')
                 .setDescription('No data was returned, the input/exchange pair  is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')

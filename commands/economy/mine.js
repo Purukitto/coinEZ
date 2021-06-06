@@ -14,7 +14,7 @@ module.exports = {
         dtime = dtime / 31556952000;
         bankbal = bankbal * (1 + ((5 * dtime) / 100));
 
-        
+
         const dbclient = await getClient();
         const minedZ = Number((Math.random() * (50 - 25) + 25).toFixed(4));
         const rminedZ = Math.ceil(minedZ);
@@ -24,7 +24,7 @@ module.exports = {
             const mresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'mint' }, { $inc: { bal: rminedZ } });
             if (!mresult.ok) {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')
@@ -36,7 +36,7 @@ module.exports = {
             const dresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'dust' }, { $inc: { bal: rminedZ - minedZ } });
             if (!dresult.ok) {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')
@@ -53,7 +53,7 @@ module.exports = {
             message.channel.send(balance);
         } else {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('DB Error', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Unknown error')
                 .setDescription('There was some issue with the database')

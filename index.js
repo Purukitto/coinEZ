@@ -44,7 +44,7 @@ client.on('message', async(message) => {
 
     if (command.guildOnly && message.channel.type === 'dm') {
         const reply = new Discord.MessageEmbed()
-            .setAuthor('Error #0', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setAuthor('Error #0', process.env.CROSSICON)
             .setColor('#ff6961')
             .setTitle('Invalid channel')
             .setDescription('I can\'t execute that command inside DMs!')
@@ -57,7 +57,7 @@ client.on('message', async(message) => {
         const authorPerms = message.channel.permissionsFor(message.author);
         if (!authorPerms || !authorPerms.has(command.permissions)) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('Error #0', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('Error #0', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Permission missing')
                 .setDescription('You don\'t have permisson to use this command!')
@@ -69,7 +69,7 @@ client.on('message', async(message) => {
 
     if (command.args && !args.length) {
         const reply = new Discord.MessageEmbed()
-            .setAuthor('Error #1', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setAuthor('Error #1', process.env.CROSSICON)
             .setColor('#ff6961')
             .setTitle('Incorrect Arguments')
             .setTimestamp();
@@ -127,7 +127,7 @@ client.on('message', async(message) => {
     } catch (error) {
         console.error(error);
         const reply = new Discord.MessageEmbed()
-            .setAuthor('Error #X', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+            .setAuthor('Error #X', process.env.CROSSICON)
             .setColor('#ff6961')
             .setTitle('Unknown error')
             .setDescription('Failed to execute command! ```' + error + '```')

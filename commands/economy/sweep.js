@@ -16,7 +16,7 @@ module.exports = {
 
         if (!result[0]) {
             const reply = new Discord.MessageEmbed()
-                .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                .setAuthor('DB Error', process.env.CROSSICON)
                 .setColor('#ff6961')
                 .setTitle('Unknown error')
                 .setDescription('There was some issue with the database')
@@ -36,7 +36,7 @@ module.exports = {
                 const dresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'dust' }, { $inc: { bal: -zgot } });
                 if (!dresult.ok) {
                     const reply = new Discord.MessageEmbed()
-                        .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                        .setAuthor('DB Error', process.env.CROSSICON)
                         .setColor('#ff6961')
                         .setTitle('Unknown error')
                         .setDescription('There was some issue with the database')
@@ -50,7 +50,7 @@ module.exports = {
                     .setDescription(`You got <:ezgold:848597364322074625> \`${zgot}\` as dust! Your updated wallet balance is <:ezgold:848597364322074625> \`${results.value.bal}\``);
             } else {
                 const reply = new Discord.MessageEmbed()
-                    .setAuthor('DB Error', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setAuthor('DB Error', process.env.CROSSICON)
                     .setColor('#ff6961')
                     .setTitle('Unknown error')
                     .setDescription('There was some issue with the database')
