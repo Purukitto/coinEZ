@@ -126,7 +126,7 @@ module.exports = {
                 .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
                 .setColor('#ff6961')
                 .setTitle('Exchange name invalid')
-                .setDescription('No data was returned, the input exchange is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')
+                .setDescription('No data was returned, the input/exchange pair  is not supported or invalid!\nThe proper usage is: `ezchart [Symbol] [Exchange]`')
                 .setTimestamp();
 
             return message.reply(reply);

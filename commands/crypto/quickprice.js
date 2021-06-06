@@ -40,10 +40,11 @@ module.exports = {
                 esymbol = '📉';
                 gcolor = '#ff6961';
             }
+            const changePerc = (results[0].price_change_percentage_24h ? '(' + results[0].price_change_percentage_24h.toFixed(2) + '%)' : '')
 
             const priceEmbed = new Discord.MessageEmbed()
                 .setColor(gcolor)
-                .setTitle(esymbol + '  ' + results[0].current_price + '(' + results[0].price_change_percentage_24h.toFixed(2) + '%)')
+                .setTitle(esymbol + '  ' + results[0].current_price + changePerc)
                 .setAuthor(symbolName + '/' + currency, results[0].image);
             message.channel.send(priceEmbed);
         } else {

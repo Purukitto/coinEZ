@@ -35,6 +35,17 @@ module.exports = {
             .then(response => response.json());
 
         if (results.prices) {
+            if (results.prices.length < 5) {
+                const reply = new Discord.MessageEmbed()
+                    .setAuthor('Error #3', 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png')
+                    .setColor('#ff6961')
+                    .setTitle('Price history not available')
+                    .setDescription('Not enough data was returned for the price of the input currency, please try after a few days!')
+                    .setTimestamp();
+
+                return message.reply(reply);
+            }
+
             glabels = []
             gprices = []
             gmax = 0;
@@ -49,6 +60,7 @@ module.exports = {
             }
 
             gprice = results.prices[results.prices.length - 1][1]
+
 
             for (x in glabels) {
                 unixTime = glabels[x];
