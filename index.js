@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+    console.log('Beta Client loaded!')
+}
+
 const fs = require('fs');
 const Discord = require('discord.js');
 const { connectDB } = require("./database");

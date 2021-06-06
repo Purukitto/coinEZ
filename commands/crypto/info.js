@@ -25,7 +25,7 @@ module.exports = {
             return message.reply(reply);
         }
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
+        reqURL = process.env.BASEURL + `/coins/${symbol}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`;
 
         const results = await fetch(reqURL)
             .then(response => response.json());

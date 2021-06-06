@@ -6,10 +6,15 @@ const { getClient } = require("../../database");
 module.exports = {
     name: 'mine',
     aliases: ['m'],
-    cooldown: 60 * 60 * 6,
     description: 'Mine and earn ⓩ based on your current hardware!',
     async execute(bot, message) {
 
+
+        let dtime = message.createdTimestamp - deptime;
+        dtime = dtime / 31556952000;
+        bankbal = bankbal * (1 + ((5 * dtime) / 100));
+
+        
         const dbclient = await getClient();
         const minedZ = Number((Math.random() * (50 - 25) + 25).toFixed(4));
         const rminedZ = Math.ceil(minedZ);

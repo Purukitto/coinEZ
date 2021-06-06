@@ -7,7 +7,7 @@ module.exports = {
     aliases: ['trend', 't'],
     async execute(bot, message, args) {
 
-        reqURL = 'https://api.coingecko.com/api/v3/search/trending';
+        reqURL = process.env.BASEURL + '/search/trending';
 
         const results = await fetch(reqURL)
             .then(response => response.json());

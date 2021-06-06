@@ -27,7 +27,7 @@ module.exports = {
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
+        reqURL = process.env.BASEURL + `/coins/markets?vs_currency=${currency}&ids=${symbol}&order=market_cap_desc&per_page=1&page=1&sparkline=false`;
 
         const results = await fetch(reqURL)
             .then(response => response.json());

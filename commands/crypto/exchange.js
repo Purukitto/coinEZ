@@ -39,7 +39,7 @@ module.exports = {
         }
         exchange = args[1].trim();
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}/tickers?exchange_ids=${exchange}&include_exchange_logo=true`;
+        reqURL = process.env.BASEURL + `/coins/${symbol}/tickers?exchange_ids=${exchange}&include_exchange_logo=true`;
 
         const results = await fetch(reqURL)
             .then(response => response.json());

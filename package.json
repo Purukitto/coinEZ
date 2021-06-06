@@ -9,6 +9,7 @@
         "chartjs-node-canvas": "^3.2.0",
         "color-thief-node": "^1.0.4",
         "discord.js": "^12.5.3",
+        "dotenv": "^10.0.0",
         "mongodb": "^3.6.9",
         "node-fetch": "^2.6.1",
         "nodemon": "^2.0.7",
@@ -19,7 +20,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
-        "dev": "nodemon testindex.js",
+        "dev": "nodemon index.js",
         "update": "node temp.js"
     },
     "repository": {

@@ -30,7 +30,7 @@ module.exports = {
         currency = "USD";
         if (args.length > 1) currency = args[1].toUpperCase();
 
-        reqURL = `https://api.coingecko.com/api/v3/coins/${symbol}/market_chart?vs_currency=${currency}&days=1`;
+        reqURL = process.env.BASEURL + `/coins/${symbol}/market_chart?vs_currency=${currency}&days=1`;
         const results = await fetch(reqURL)
             .then(response => response.json());
 
