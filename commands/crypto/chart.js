@@ -61,7 +61,6 @@ module.exports = {
 
             gprice = results.prices[results.prices.length - 1][1]
 
-
             for (x in glabels) {
                 unixTime = glabels[x];
                 var date = new Date(unixTime * 1000);
@@ -114,13 +113,13 @@ module.exports = {
 
             const fCanvas = Canvas.createCanvas(width, height + 60);
             const fContext = fCanvas.getContext('2d');
-            fContext.drawImage(gImage, 0, 60, fCanvas.width, fCanvas.height);
+            fContext.drawImage(gImage, 0, 60, fCanvas.width, fCanvas.height - 60);
 
             fContext.fillStyle = "#161a25";
             fContext.fillRect(0, 0, width, 60);
 
             const zimg = await Canvas.loadImage('https://i.ibb.co/3F1MT0N/logog-03.png');
-            fContext.drawImage(zimg, 50, 415, 115.49, 31.5);
+            fContext.drawImage(zimg, 80, 375, 115.49, 31.5);
 
             fContext.font = 'bold 15px arial';
 
