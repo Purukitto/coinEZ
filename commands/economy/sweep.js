@@ -4,11 +4,33 @@ const { getClient } = require("../../database");
 module.exports = {
     name: 'sweep',
     aliases: ['s'],
-    cooldown: 60 * 60 * 12,
     description: 'Sweep up some ⓩ dust!',
     async execute(bot, message) {
 
         const dbclient = await getClient();
+
+        const cdresult = await dbclient.db('user').collection("cooldowns").findOneAndUpdate({ id: message.author.id }, { $set: { sweep: message.createdTimestamp } }, { upsert: true, returnDocument: 'before' });
+        if (!cdresult.value || !cdresult.value.sweep)
+            sweepcd = 0;
+        else sweepcd = cdresult.value.sweep;
+
+        let dtime = message.createdTimestamp - sweepcd;
+        dtime = dtime / (1000 * 60 * 60);
+
+        if (!(dtime >= 6)) {
+            ltime = 6 - dtime;
+            if (ltime < 1) ltime = (ltime / 60).toFixed(1) + ' Min(s)'
+            else ltime = ltime.toFixed(1) + ' Hour(s)';
+
+            const reply = new Discord.MessageEmbed()
+                .setColor('#ff6961')
+                .setTitle('⏲️ Sweep cooldown!')
+                .setDescription('Don\'t be this greedy!\n You can sweep again after `' + ltime + '`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
+
         const result = await dbclient.db().collection("economyData").find({ "id": 'dust' }).toArray();
 
         const balance = new Discord.MessageEmbed()

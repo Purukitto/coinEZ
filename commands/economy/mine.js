@@ -19,11 +19,10 @@ module.exports = {
 
         let dtime = message.createdTimestamp - minecd;
         dtime = dtime / (1000 * 60 * 60);
-        console.log(dtime)
 
-        if (!(dtime >= 12)) {
+        if (!(dtime >= 6)) {
 
-            ltime = 12 - dtime;
+            ltime = 6 - dtime;
             if (ltime < 1) ltime = (ltime / 60).toFixed(1) + ' Min(s)'
             else ltime = ltime.toFixed(1) + ' Hour(s)';
 
