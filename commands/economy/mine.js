@@ -24,7 +24,7 @@ module.exports = {
 
             ltime = 6 - dtime;
             if (ltime < 1) ltime = (ltime / 60).toFixed(1) + ' Min(s)'
-            else ltime = ltime.toFixed(1) + ' Hour(s)';
+            else ltime = ltime.toFixed() + ' Hour(s)';
 
             const reply = new Discord.MessageEmbed()
                 .setColor('#ff6961')
