@@ -8,16 +8,33 @@ module.exports = {
     aliases: ['m'],
     description: 'Mine and earn ⓩ based on your current hardware!',
     async execute(bot, message) {
-
-
-        let dtime = message.createdTimestamp - deptime;
-        dtime = dtime / 31556952000;
-        bankbal = bankbal * (1 + ((5 * dtime) / 100));
-
-
         const dbclient = await getClient();
         const minedZ = Number((Math.random() * (50 - 25) + 25).toFixed(4));
         const rminedZ = Math.ceil(minedZ);
+
+        const cdresult = await dbclient.db('user').collection("cooldowns").findOneAndUpdate({ id: message.author.id }, { $set: { mine: message.createdTimestamp } }, { upsert: true, returnDocument: 'before' });
+        if (!cdresult.value || !cdresult.value.mine)
+            minecd = 0;
+        else minecd = cdresult.value.mine;
+
+        let dtime = message.createdTimestamp - minecd;
+        dtime = dtime / (1000 * 60 * 60);
+        console.log(dtime)
+
+        if (!(dtime >= 12)) {
+
+            ltime = 12 - dtime;
+            if (ltime < 1) ltime = (ltime / 60).toFixed(1) + ' Min(s)'
+            else ltime = ltime.toFixed(1) + ' Hour(s)';
+
+            const reply = new Discord.MessageEmbed()
+                .setColor('#ff6961')
+                .setTitle('⏲️ Mining cooldown!')
+                .setDescription('Your setup is currently busy mining!\n You can mine again after `' + ltime + '`')
+                .setTimestamp();
+
+            return message.reply(reply);
+        }
 
         const result = await dbclient.db().collection("userData").findOneAndUpdate({ id: message.author.id }, { $inc: { bal: minedZ, bank: 0 } }, { upsert: true, returnDocument: 'after' });
         if (result.ok) {
