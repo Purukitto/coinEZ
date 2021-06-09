@@ -52,7 +52,7 @@ module.exports = {
             const zperc = (Math.random() * (.7 - .3) + .3);
             const zgot = zperc * result[0].bal;
 
-            const results = await dbclient.db().collection("userData").findOneAndUpdate({ id: message.author.id }, { $inc: { bal: zgot, bank: 0 } }, { upsert: true, returnDocument: 'after' });
+            const results = await dbclient.db().collection("userData").findOneAndUpdate({ id: message.author.id }, { $inc: { bal: zgot, bank: 0, depTime: 0 } }, { upsert: true, returnDocument: 'after' });
 
             if (results.ok) {
                 const dresult = await dbclient.db().collection("economyData").findOneAndUpdate({ id: 'dust' }, { $inc: { bal: -zgot } });

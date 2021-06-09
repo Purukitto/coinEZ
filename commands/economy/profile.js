@@ -31,16 +31,9 @@ module.exports = {
             return el.id == message.author.id;
         });
 
-        if (!result[0].depTime) {
-            deptime = 0
-        } else deptime = result[0].depTime;
-
-        bankbal = result[0].bank;
-        if (bankbal === undefined) bankbal = 0;
-
-        let dtime = message.createdTimestamp - deptime;
+        let dtime = message.createdTimestamp - result[0].depTime;
         dtime = dtime / 31556952000;
-        bankbal = bankbal * (1 + ((5 * dtime) / 100));
+        bankbal = result[0].bank * (1 + ((5 * dtime) / 100));
 
         const canvas = Canvas.createCanvas(472, 300);
         const context = canvas.getContext('2d');

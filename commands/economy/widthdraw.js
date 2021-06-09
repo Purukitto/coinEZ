@@ -24,10 +24,7 @@ module.exports = {
             return message.reply(reply);
         };
 
-        if (!result[0].depTime) {
-            deptime = 0
-        } else deptime = result[0].depTime;
-        let dtime = message.createdTimestamp - deptime;
+        let dtime = message.createdTimestamp - result[0].depTime;
         dtime = dtime / 31556952000;
         const bankbal = result[0].bank * (1 + ((5 * dtime) / 100));
 
