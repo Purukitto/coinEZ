@@ -4,6 +4,7 @@
     "description": "Get bitcoin, ethereum, litecoin, eos, grin, cosmos and other cryptocurrency price, volume, market data, and over 4000 publicly traded cryptocurrencies from over 300 exchanges. Set personal price alerts, send and receive tips, news alerts etc.!",
     "main": "index.js",
     "dependencies": {
+        "@top-gg/sdk": "^3.1.1",
         "canvas": "^2.8.0",
         "chart.js": "^3.3.0",
         "chartjs-node-canvas": "^3.2.0",
