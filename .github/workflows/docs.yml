@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
   # trigger deployment manually
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   docs:
