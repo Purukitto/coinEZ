@@ -1,0 +1,15 @@
+:root {
+    // brand colors
+    --c-brand: #ff6666;
+    --c-brand-light: #fa7b7b;
+    //
+    scroll-behavior: smooth;
+    --external-link-icon-color: #000;
+}
+
+html.dark {
+    // brand colors
+    --c-brand: #ff6666;
+    --c-brand-light: #fa7b7b;
+    --external-link-icon-color: #fff;
+}

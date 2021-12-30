@@ -1,7 +1,7 @@
 {
     "name": "coinez",
     "version": "1.0.0",
-    "description": "Get bitcoin, ethereum, litecoin, eos, grin, cosmos and other cryptocurrency price, volume, market data, and over 4000 publicly traded cryptocurrencies from over 300 exchanges. Set personal price alerts, send and receive tips, news alerts etc.!",
+    "description": "CoinEZ is a discord bot to get cryptocurrency price, volume and market data of over 8000 publicly traded cryptocurrencies and more! Along with a full fledged global economy so that no one is bored while waiting for the coins to land on the moon! 🚀🚀",
     "main": "index.js",
     "dependencies": {
         "@top-gg/sdk": "^3.1.1",
@@ -17,12 +17,15 @@
         "pretty-ms": "^7.0.1",
         "ws": "^7.4.6"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "vuepress": "^2.0.0-beta.31"
+    },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
         "dev": "nodemon index.js",
-        "update": "node temp.js"
+        "update": "node temp.js",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "repository": {
         "type": "git",
